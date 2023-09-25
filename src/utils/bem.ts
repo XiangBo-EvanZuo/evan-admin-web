@@ -6,19 +6,19 @@ type Mods = Mod | Mod[];
 export type BEM = ReturnType<typeof createBEM>;
 
 function genBem(name: string, mods?: Mods): string {
-  if (!mods) {
-    return '';
-  }
+    if (!mods) {
+        return '';
+    }
 
-  if (typeof mods === 'string') {
-    return ` ${name}--${mods}`;
-  }
+    if (typeof mods === 'string') {
+        return ` ${name}--${mods}`;
+    }
 
-  if (Array.isArray(mods)) {
-    return mods.reduce<string>((ret, item) => ret + genBem(name, item), '');
-  }
+    if (Array.isArray(mods)) {
+        return mods.reduce<string>((ret, item) => ret + genBem(name, item), '');
+    }
 
-  return Object.keys(mods).reduce((ret, key) => ret + (mods[key] ? genBem(name, key) : ''), '');
+    return Object.keys(mods).reduce((ret, key) => ret + (mods[key] ? genBem(name, key) : ''), '');
 }
 
 /**
@@ -30,23 +30,23 @@ function genBem(name: string, mods?: Mods): string {
  * b(['disabled', 'primary']) // 'button button--disabled button--primary'
  */
 export function buildBEM(name: string) {
-  return (el?: Mods, mods?: Mods): Mods => {
-    if (el && typeof el !== 'string') {
-      mods = el;
-      el = '';
-    }
+    return (el?: Mods, mods?: Mods): Mods => {
+        if (el && typeof el !== 'string') {
+            mods = el;
+            el = '';
+        }
 
-    el = el ? `${name}__${el}` : name;
+        el = el ? `${name}__${el}` : name;
 
-    return `${el}${genBem(el, mods)}`;
-  };
+        return `${el}${genBem(el, mods)}`;
+    };
 }
 
 export function createBEM(name: string) {
-  return [buildBEM(`${prefixCls}-${name}`)];
+    return [buildBEM(`${prefixCls}-${name}`)];
 }
 
 export function createNamespace(name: string) {
-  const prefixedName = `${prefixCls}-${name}`;
-  return [prefixedName, buildBEM(prefixedName)] as const;
+    const prefixedName = `${prefixCls}-${name}`;
+    return [prefixedName, buildBEM(prefixedName)] as const;
 }
