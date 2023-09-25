@@ -3,7 +3,7 @@
   "volar.tsPlugin": true,
   "volar.tsPluginStatus": false,
   "npm.packageManager": "pnpm",
-  "editor.tabSize": 2,
+  "editor.tabSize": 4,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "files.eol": "\n",
   "search.exclude": {
