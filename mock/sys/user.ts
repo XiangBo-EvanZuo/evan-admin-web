@@ -69,7 +69,7 @@ export default [
         },
     },
     {
-        url: '/evan/getUserInfo',
+        url: '/basic-api/getUserInfo',
         method: 'get',
         response: (request: requestParams) => {
             const token = getRequestToken(request);
