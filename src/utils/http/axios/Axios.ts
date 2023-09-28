@@ -209,7 +209,6 @@ export class VAxios {
         }
 
         const transform = this.getTransform();
-
         const { requestOptions } = this.options;
 
         const opt: RequestOptions = Object.assign({}, requestOptions, options);
@@ -221,10 +220,12 @@ export class VAxios {
         conf.requestOptions = opt;
 
         conf = this.supportFormData(conf);
-
+        conf.headers = opt.headers;
         return new Promise((resolve, reject) => {
             this.axiosInstance
-                .request<any, AxiosResponse<Result>>(conf)
+                .request<any, AxiosResponse<Result>>({
+                    ...conf,
+                })
                 .then((res: AxiosResponse<Result>) => {
                     if (transformResponseHook && isFunction(transformResponseHook)) {
                         try {

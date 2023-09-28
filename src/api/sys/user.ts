@@ -4,7 +4,7 @@ import { LoginParams, LoginResultModel, GetUserInfoModel } from './model/userMod
 import { ErrorMessageMode } from '/#/axios';
 
 enum Api {
-    Login = '/login',
+    Login = '/oauth/token',
     Logout = '/logout',
     GetUserInfo = '/getUserInfo',
     GetPermCode = '/getPermCode',
@@ -21,6 +21,7 @@ export function loginApi(params: LoginParams, mode: ErrorMessageMode = 'modal') 
             params,
         },
         {
+            headers: { 'content-type': 'application/x-www-form-urlencoded' },
             errorMessageMode: mode,
         },
     );

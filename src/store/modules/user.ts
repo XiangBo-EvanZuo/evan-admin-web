@@ -90,7 +90,13 @@ export const useUserStore = defineStore({
         ): Promise<GetUserInfoModel | null> {
             try {
                 const { goHome = true, mode, ...loginParams } = params;
-                const data = await loginApi(loginParams, mode);
+                const formData1 = new FormData();
+                formData1.set('username', loginParams.username);
+                formData1.set('password', loginParams.password);
+                formData1.set('client_id', 'client-app');
+                formData1.set('client_secret', '123456');
+                formData1.set('grant_type', 'password');
+                const data = await loginApi(formData1, mode);
                 const { token } = data;
 
                 // save token
