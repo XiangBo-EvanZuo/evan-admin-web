@@ -163,6 +163,7 @@ export class VAxios {
     }
 
     // support form-data
+    // bug-会变成
     supportFormData(config: AxiosRequestConfig) {
         const headers = config.headers || this.options.headers;
         const contentType = headers?.['Content-Type'] || headers?.['content-type'];

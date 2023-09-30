@@ -32,6 +32,14 @@ export default defineApplicationConfig({
                     // only https
                     // secure: false
                 },
+                '/evan/auth/oauth/logout': {
+                    target: 'http://127.0.0.1:9201',
+                    changeOrigin: true,
+                    ws: true,
+                    rewrite: (path) => path.replace(new RegExp(`^/evan`), ''),
+                    // only https
+                    // secure: false
+                },
                 '/evan': {
                     target: 'http://localhost:3000',
                     changeOrigin: true,
