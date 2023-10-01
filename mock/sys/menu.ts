@@ -262,7 +262,72 @@ export default [
                 default:
                     menu = [];
             }
-
+            // todo: 将所有的页面路由都加上component属性
+            menu[2].children = menu[2].children.concat({
+                icon: 'ion:key-outline',
+                title: 'routes.demo.permission.permission',
+                meta: {
+                    orderNo: 15,
+                    icon: 'ion:key-outline',
+                    title: 'routes.demo.permission.permission',
+                },
+                name: 'routes.demo.permission.permission',
+                hideMenu: false,
+                path: '/permission',
+                redirect: '/permission/front/page',
+                children: [
+                    {
+                        title: 'routes.demo.permission.front',
+                        meta: { title: 'routes.demo.permission.front' },
+                        name: 'routes.demo.permission.front',
+                        hideMenu: false,
+                        path: '/permission/front',
+                        children: [
+                            {
+                                title: 'routes.demo.permission.frontPage',
+                                meta: { title: 'routes.demo.permission.frontPage' },
+                                name: 'routes.demo.permission.frontPage',
+                                hideMenu: false,
+                                path: '/permission/front/page',
+                                component: '/demo/system/account/index',
+                            },
+                            {
+                                title: 'routes.demo.permission.frontBtn',
+                                meta: { title: 'routes.demo.permission.frontBtn' },
+                                name: 'routes.demo.permission.frontBtn',
+                                hideMenu: false,
+                                path: '/permission/front/btn',
+                                component: '/demo/system/account/index',
+                            },
+                        ],
+                    },
+                    {
+                        title: 'routes.demo.permission.back',
+                        meta: { title: 'routes.demo.permission.back' },
+                        name: 'routes.demo.permission.back',
+                        hideMenu: false,
+                        path: '/permission/back',
+                        children: [
+                            {
+                                title: 'routes.demo.permission.backPage',
+                                meta: { title: 'routes.demo.permission.backPage' },
+                                name: 'routes.demo.permission.backPage',
+                                hideMenu: false,
+                                path: '/permission/back/page2',
+                                component: '/demo/system/account/index',
+                            },
+                            {
+                                title: 'routes.demo.permission.backBtn',
+                                meta: { title: 'routes.demo.permission.backBtn' },
+                                name: 'routes.demo.permission.backBtn',
+                                hideMenu: false,
+                                path: '/permission/back/btn2',
+                                component: '/demo/system/account/index',
+                            },
+                        ],
+                    },
+                ],
+            });
             return resultSuccess(menu);
         },
     },
