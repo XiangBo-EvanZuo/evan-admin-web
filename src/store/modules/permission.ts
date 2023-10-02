@@ -105,7 +105,7 @@ export const usePermissionStore = defineStore({
         },
         async changePermissionCode() {
             const codeList = await getPermCode();
-            this.setPermCodeList(codeList);
+            this.setPermCodeList(codeList.perCodeList);
         },
 
         // 构建路由

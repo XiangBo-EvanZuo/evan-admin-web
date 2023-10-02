@@ -85,7 +85,9 @@ export default [
         response: (request: requestParams) => {
             const token = getRequestToken(request);
             if (!token) return resultError('Invalid token');
-            const codeList = fakeCodeList['1'];
+            const codeList = {
+                perCodeList: fakeCodeList['1'],
+            };
 
             return resultSuccess(codeList);
         },
