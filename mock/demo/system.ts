@@ -138,7 +138,7 @@ const menuList = (() => {
 
 export default [
     {
-        url: '/basic-api/system/getAccountList',
+        url: '/evan/system/getAccountList',
         timeout: 100,
         method: 'get',
         response: ({ query }) => {
@@ -147,7 +147,7 @@ export default [
         },
     },
     {
-        url: '/basic-api/system/getRoleListByPage',
+        url: '/evan/system/getRoleListByPage',
         timeout: 100,
         method: 'get',
         response: ({ query }) => {
@@ -165,7 +165,7 @@ export default [
         },
     },
     {
-        url: '/basic-api/system/getAllRoleList',
+        url: '/evan/system/getAllRoleList',
         timeout: 100,
         method: 'get',
         response: () => {
@@ -173,7 +173,7 @@ export default [
         },
     },
     {
-        url: '/basic-api/system/getDeptList',
+        url: '/evan/system/getDeptList',
         timeout: 100,
         method: 'get',
         response: () => {
@@ -181,7 +181,7 @@ export default [
         },
     },
     {
-        url: '/basic-api/system/getMenuList',
+        url: '/evan/system/getMenuList',
         timeout: 100,
         method: 'get',
         response: () => {
@@ -189,7 +189,7 @@ export default [
         },
     },
     {
-        url: '/basic-api/system/accountExist',
+        url: '/evan/system/accountExist',
         timeout: 500,
         method: 'post',
         response: ({ body }) => {
