@@ -173,11 +173,11 @@ export default [
         },
     },
     {
-        url: '/evan/system/getDeptList',
+        url: '/basic-api/system/getDeptList',
         timeout: 100,
         method: 'get',
         response: () => {
-            return resultSuccess(deptList);
+            return resultSuccess({ list: deptList, total: 3 });
         },
     },
     {

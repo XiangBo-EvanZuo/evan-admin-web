@@ -56,6 +56,14 @@ export default defineApplicationConfig({
                     // only https
                     // secure: false
                 },
+                '/evan/business-menu/system/getDeptList': {
+                    target: 'http://127.0.0.1:9201',
+                    changeOrigin: true,
+                    ws: true,
+                    rewrite: (path) => path.replace(new RegExp(`^/evan`), ''),
+                    // only https
+                    // secure: false
+                },
                 '/evan': {
                     target: 'http://localhost:3000',
                     changeOrigin: true,
