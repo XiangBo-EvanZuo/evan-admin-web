@@ -11,7 +11,7 @@ import type { Key } from 'ant-design-vue/lib/table/interface';
 
 type Props = Partial<DynamicProps<BasicTableProps>>;
 
-type UseTableMethod = TableActionType & {
+export type UseTableMethod = TableActionType & {
     getForm: () => FormActionType;
 };
 

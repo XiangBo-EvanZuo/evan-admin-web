@@ -1,7 +1,7 @@
 <template>
     <PageWrapper dense contentFullHeight fixedHeight contentClass="flex">
         <DeptTree class="w-1/4 xl:w-1/5" @select="handleSelect" />
-        <BasicTable @register="registerTable" class="w-3/4 xl:w-4/5" :searchInfo="searchInfo">
+        <BasicTable @register="registerTableFunc" class="w-3/4 xl:w-4/5" :searchInfo="searchInfo">
             <template #toolbar>
                 <a-button type="primary" @click="handleCreate">新增账号</a-button>
             </template>
@@ -40,7 +40,7 @@
 <script lang="ts">
     import { defineComponent, reactive } from 'vue';
 
-    import { BasicTable, useTable, TableAction } from '/@/components/Table';
+    import { BasicTable, useTable, TableAction, TableActionType } from '/@/components/Table';
     import { getAccountList } from '/@/api/demo/system';
     import { PageWrapper } from '/@/components/Page';
     import DeptTree from './DeptTree.vue';
@@ -50,6 +50,7 @@
 
     import { columns, searchFormSchema } from './account.data';
     import { useGo } from '/@/hooks/web/usePage';
+    import { UseTableMethod } from '/@/components/Table/src/hooks/useTable';
 
     export default defineComponent({
         name: 'AccountManagement',
@@ -83,6 +84,12 @@
                 },
             });
 
+            const registerTableFunc = (instance: TableActionType, formInstance: UseTableMethod) => {
+                searchInfo.deptId = '-';
+                console.log('resigter');
+                registerTable(instance, formInstance);
+            };
+
             function handleCreate() {
                 openModal(true, {
                     isUpdate: false,
@@ -113,7 +120,8 @@
             }
 
             function handleSelect(deptId = '') {
-                searchInfo.deptId = deptId;
+                console.log('handleSelect');
+                searchInfo.deptId = deptId || '-';
                 reload();
             }
 
@@ -122,7 +130,7 @@
             }
 
             return {
-                registerTable,
+                registerTableFunc,
                 registerModal,
                 handleCreate,
                 handleEdit,
