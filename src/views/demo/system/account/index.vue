@@ -85,7 +85,7 @@
             });
 
             const registerTableFunc = (instance: TableActionType, formInstance: UseTableMethod) => {
-                searchInfo.deptId = '-';
+                searchInfo.deptId = '';
                 console.log('resigter');
                 registerTable(instance, formInstance);
             };

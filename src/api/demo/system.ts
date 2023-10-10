@@ -23,7 +23,7 @@ enum Api {
 }
 
 export const getAccountList = (params: AccountParams) =>
-    defHttp.get<AccountListGetResultModel>({ url: Api.AccountList, params }).then((res) => {
+    defHttp.post<AccountListGetResultModel>({ url: Api.AccountList, params }).then((res) => {
         res.items = res.items.map((item) => {
             return {
                 ...item,
