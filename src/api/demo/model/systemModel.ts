@@ -27,7 +27,7 @@ export interface AccountListItem {
     account: string;
     email: string;
     nickname: string;
-    role: number;
+    role: Array<string>;
     createTime: string;
     remark: string;
     status: number;
@@ -65,7 +65,7 @@ export interface RoleListItem {
  */
 export type AccountListGetResultModel = BasicFetchResult<AccountListItem>;
 
-export type DeptListGetResultModel = BasicFetchResult<DeptListItem>;
+export type DeptListGetResultModel = { list: BasicFetchResult<DeptListItem> };
 
 export type MenuListGetResultModel = BasicFetchResult<MenuListItem>;
 
