@@ -24,7 +24,7 @@ export const columns: BasicColumn[] = [
     },
     {
         title: '角色',
-        dataIndex: 'role',
+        dataIndex: 'roles',
         width: 200,
     },
     {
@@ -80,13 +80,14 @@ export const accountFormSchema: FormSchema[] = [
         ifShow: false,
     },
     {
-        label: '角色',
+        label: '角色2',
         field: 'role',
         component: 'ApiSelect',
         componentProps: {
             api: getAllRoleList,
             labelField: 'roleName',
             valueField: 'roleValue',
+            mode: 'multiple',
         },
         required: true,
     },

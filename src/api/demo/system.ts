@@ -13,7 +13,7 @@ import {
 import { defHttp } from '/@/utils/http/axios';
 
 enum Api {
-    AccountList = '/system/getAccountList',
+    AccountList = '/business-menu/system/getAccountList',
     IsAccountExist = '/system/accountExist',
     DeptList = '/business-menu/system/getDeptList',
     setRoleStatus = '/system/setRoleStatus',
@@ -23,7 +23,15 @@ enum Api {
 }
 
 export const getAccountList = (params: AccountParams) =>
-    defHttp.get<AccountListGetResultModel>({ url: Api.AccountList, params });
+    defHttp.get<AccountListGetResultModel>({ url: Api.AccountList, params }).then((res) => {
+        res.items = res.items.map((item) => {
+            return {
+                ...item,
+                roles: item.role.join(','),
+            };
+        });
+        return res;
+    });
 
 export const getDeptList = (params?: DeptListItem) =>
     defHttp.get<DeptListGetResultModel>({ url: Api.DeptList, params }).then((res) => res.list);
