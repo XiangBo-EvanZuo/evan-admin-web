@@ -1,5 +1,5 @@
 import { MockMethod } from 'vite-plugin-mock';
-import { resultError, resultPageSuccess, resultSuccess } from '../_util';
+import { resultPageSuccess, resultSuccess } from '../_util';
 
 const accountList = (() => {
     const result: any[] = [];
@@ -156,10 +156,11 @@ export default [
         },
     },
     {
-        url: '/basic-api/system/setRoleStatus',
+        url: '/evan/system/setRoleStatus',
         timeout: 500,
         method: 'post',
         response: ({ query }) => {
+            console.log(query);
             const { id, status } = query;
             return resultSuccess({ id, status });
         },
@@ -195,7 +196,7 @@ export default [
         response: ({ body }) => {
             const { account } = body || {};
             if (account && account.indexOf('admin') !== -1) {
-                return resultError('该字段不能包含admin');
+                return resultSuccess({ message: '该字段不能包含admin', exist: true });
             } else {
                 return resultSuccess(`${account} can use`);
             }

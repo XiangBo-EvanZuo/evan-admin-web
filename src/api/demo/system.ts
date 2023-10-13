@@ -14,7 +14,7 @@ import { defHttp } from '/@/utils/http/axios';
 
 enum Api {
     AccountList = '/business-menu/system/getAccountList',
-    IsAccountExist = '/system/accountExist',
+    IsAccountExist = '/business-menu/system/accountExist',
     DeptList = '/business-menu/system/getDeptList',
     setRoleStatus = '/system/setRoleStatus',
     MenuList = '/system/getMenuList',
@@ -49,4 +49,18 @@ export const setRoleStatus = (id: number, status: string) =>
     defHttp.post({ url: Api.setRoleStatus, params: { id, status } });
 
 export const isAccountExist = (account: string) =>
-    defHttp.post({ url: Api.IsAccountExist, params: { account } }, { errorMessageMode: 'none' });
+    defHttp
+        .post(
+            {
+                url: Api.IsAccountExist,
+                params: { account },
+            },
+            { errorMessageMode: 'none' },
+        )
+        .then((res) => {
+            if (res.exist) {
+                return Promise.reject(res);
+            } else {
+                return res;
+            }
+        });
