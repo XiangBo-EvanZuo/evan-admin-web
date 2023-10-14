@@ -17,6 +17,7 @@ enum Api {
     IsAccountExist = '/business-menu/system/accountExist',
     DeptList = '/business-menu/system/getDeptList',
     setRoleStatus = '/system/setRoleStatus',
+    // todo： 对接菜单接口打开以恢复mock
     // MenuList = '/system/getMenuList',
     // RolePageList = '/system/getRoleListByPage',
     MenuList = '/business-resource/user/feignGetMenuList',

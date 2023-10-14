@@ -6,7 +6,7 @@ import Icon from '@/components/Icon/Icon.vue';
 export const columns: BasicColumn[] = [
     {
         title: '菜单名称',
-        dataIndex: 'menuName',
+        dataIndex: 'name',
         width: 200,
         align: 'left',
     },
