@@ -17,7 +17,9 @@ enum Api {
     IsAccountExist = '/business-menu/system/accountExist',
     DeptList = '/business-menu/system/getDeptList',
     setRoleStatus = '/system/setRoleStatus',
-    MenuList = '/system/getMenuList',
+    // MenuList = '/system/getMenuList',
+    // RolePageList = '/system/getRoleListByPage',
+    MenuList = '/business-resource/user/feignGetMenuList',
     RolePageList = '/business-menu/system/getRoleListByPage',
     GetAllRoleList = '/business-menu/system/getAllRoleList',
 }
@@ -37,7 +39,7 @@ export const getDeptList = (params?: DeptListItem) =>
     defHttp.get<DeptListGetResultModel>({ url: Api.DeptList, params }).then((res) => res.list);
 
 export const getMenuList = (params?: MenuParams) =>
-    defHttp.get<MenuListGetResultModel>({ url: Api.MenuList, params });
+    defHttp.get<MenuListGetResultModel>({ url: Api.MenuList, params }).then((res) => res.list);
 
 export const getRoleListByPage = (params?: RolePageParams) =>
     defHttp.post<RolePageListGetResultModel>({ url: Api.RolePageList, params });

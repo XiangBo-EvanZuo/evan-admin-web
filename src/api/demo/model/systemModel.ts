@@ -67,7 +67,7 @@ export type AccountListGetResultModel = BasicFetchResult<AccountListItem>;
 
 export type DeptListGetResultModel = { list: BasicFetchResult<DeptListItem> };
 
-export type MenuListGetResultModel = BasicFetchResult<MenuListItem>;
+export type MenuListGetResultModel = { list: BasicFetchResult<MenuListItem> };
 
 export type RolePageListGetResultModel = BasicFetchResult<RoleListItem>;
 
