@@ -9,6 +9,12 @@
                     <TableAction
                         :actions="[
                             {
+                                label: '编辑URL',
+                                icon: 'clarity:note-edit-line',
+                                onClick: handleEdit.bind(null, record),
+                            },
+                            {
+                                label: '编辑菜单',
                                 icon: 'clarity:note-edit-line',
                                 onClick: handleEdit.bind(null, record),
                             },
@@ -39,6 +45,8 @@
     import RoleDrawer from './RoleDrawer.vue';
 
     import { columns, searchFormSchema } from './role.data';
+    // import { useI18n } from '/@/hooks/web/useI18n';
+    // import { createActionColumn } from './action';
 
     export default defineComponent({
         name: 'RoleManagement',
@@ -58,13 +66,35 @@
                 bordered: true,
                 showIndexColumn: false,
                 actionColumn: {
-                    width: 80,
+                    width: 230,
                     title: '操作',
                     dataIndex: 'action',
                     // slots: { customRender: 'action' },
                     fixed: undefined,
                 },
+                // actionColumn: createActionColumn((value) => {
+                //     console.log({ value });
+                // }),
             });
+            //             title: t('component.upload.operating'),
+            // dataIndex: 'action',
+            // fixed: false,
+            // customRender: ({ record }) => {
+            //     const actions: ActionItem[] = [
+            //         {
+            //             label: t('component.upload.del'),
+            //             color: 'error',
+            //             onClick: handleRemove.bind(null, record),
+            //         },
+            //     ];
+            //     // if (checkImgType(record)) {
+            //     //   actions.unshift({
+            //     //     label: t('component.upload.preview'),
+            //     //     onClick: handlePreview.bind(null, record),
+            //     //   });
+            //     // }
+            //     return <TableAction actions={actions} outside={true} />;
+            // },
 
             function handleCreate() {
                 openDrawer(true, {

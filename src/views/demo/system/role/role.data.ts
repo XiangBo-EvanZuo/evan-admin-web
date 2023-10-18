@@ -61,6 +61,14 @@ export const columns: BasicColumn[] = [
         title: '备注',
         dataIndex: 'remark',
     },
+    {
+        title: '包含菜单',
+        dataIndex: 'remark',
+    },
+    {
+        title: '包含URL',
+        dataIndex: 'remark',
+    },
 ];
 
 export const searchFormSchema: FormSchema[] = [
