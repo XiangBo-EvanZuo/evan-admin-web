@@ -33,7 +33,7 @@
     import { defineComponent } from 'vue';
 
     import { BasicTable, useTable, TableAction } from '/@/components/Table';
-    import { getRoleListByPage } from '/@/api/demo/system';
+    import { getUrlList } from '/@/api/demo/system';
 
     import { useDrawer } from '/@/components/Drawer';
     import RoleDrawer from './RoleDrawer.vue';
@@ -47,7 +47,7 @@
             const [registerDrawer, { openDrawer }] = useDrawer();
             const [registerTable, { reload }] = useTable({
                 title: '角色列表',
-                api: getRoleListByPage,
+                api: getUrlList,
                 columns,
                 formConfig: {
                     labelWidth: 120,

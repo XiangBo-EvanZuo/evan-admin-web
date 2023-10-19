@@ -23,6 +23,7 @@ enum Api {
     MenuList = '/business-resource/user/feignGetMenuList',
     RolePageList = '/business-menu/system/getRoleListByPage',
     GetAllRoleList = '/business-menu/system/getAllRoleList',
+    UrlList = '/business-menu/system/getUrlList',
 }
 
 export const getAccountList = (params: AccountParams) =>
@@ -44,6 +45,9 @@ export const getMenuList = (params?: MenuParams) =>
 
 export const getRoleListByPage = (params?: RolePageParams) =>
     defHttp.post<RolePageListGetResultModel>({ url: Api.RolePageList, params });
+
+export const getUrlList = (params?: RolePageParams) =>
+    defHttp.post<RolePageListGetResultModel>({ url: Api.UrlList, params });
 
 export const getAllRoleList = (params?: RoleParams) =>
     defHttp.get<RoleListGetResultModel>({ url: Api.GetAllRoleList, params });
