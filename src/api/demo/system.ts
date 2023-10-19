@@ -44,7 +44,16 @@ export const getMenuList = (params?: MenuParams) =>
     defHttp.get<MenuListGetResultModel>({ url: Api.MenuList, params }).then((res) => res.list);
 
 export const getRoleListByPage = (params?: RolePageParams) =>
-    defHttp.post<RolePageListGetResultModel>({ url: Api.RolePageList, params });
+    defHttp.post<RolePageListGetResultModel>({ url: Api.RolePageList, params }).then((res) => {
+        res.items = res.items.map((item) => {
+            return {
+                ...item,
+                menuLength: item.menu.length,
+                urlListLength: item.urlList.length,
+            };
+        });
+        return res;
+    });
 
 export const getUrlList = (params?: RolePageParams) =>
     defHttp.post<RolePageListGetResultModel>({ url: Api.UrlList, params });

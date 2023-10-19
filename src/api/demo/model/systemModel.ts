@@ -58,6 +58,10 @@ export interface RoleListItem {
     status: number;
     orderNo: string;
     createTime: string;
+    menu: Array<number>;
+    urlList: Array<number>;
+    menuLength?: number;
+    urlListLength?: number;
 }
 
 /**

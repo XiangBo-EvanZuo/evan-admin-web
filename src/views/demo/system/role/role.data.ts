@@ -8,17 +8,12 @@ export const columns: BasicColumn[] = [
     {
         title: '角色名称',
         dataIndex: 'roleName',
-        width: 200,
+        width: 100,
     },
     {
         title: '角色值',
         dataIndex: 'roleValue',
-        width: 180,
-    },
-    {
-        title: '排序',
-        dataIndex: 'orderNo',
-        width: 50,
+        width: 200,
     },
     {
         title: '状态',
@@ -53,21 +48,16 @@ export const columns: BasicColumn[] = [
         },
     },
     {
-        title: '创建时间',
-        dataIndex: 'createTime',
-        width: 180,
-    },
-    {
         title: '备注',
         dataIndex: 'remark',
     },
     {
         title: '包含菜单',
-        dataIndex: 'remark',
+        dataIndex: 'menuLength',
     },
     {
         title: '包含URL',
-        dataIndex: 'remark',
+        dataIndex: 'urlListLength',
     },
 ];
 
