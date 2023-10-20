@@ -3,6 +3,7 @@
         <BasicTable @register="registerTable">
             <template #toolbar>
                 <a-button type="primary" @click="handleCreate"> 新增URL </a-button>
+                <a-button type="primary" @click="setData"> setData </a-button>
             </template>
             <template #bodyCell="{ column, record }">
                 <template v-if="column.key === 'action'">
@@ -30,20 +31,48 @@
     </div>
 </template>
 <script lang="ts">
-    import { defineComponent } from 'vue';
+    import { Ref, defineComponent, ref } from 'vue';
 
-    import { BasicTable, useTable, TableAction } from '/@/components/Table';
+    import { BasicTable, useTable, TableAction, FormSchema } from '/@/components/Table';
     import { getUrlList } from '/@/api/demo/system';
 
     import { useDrawer } from '/@/components/Drawer';
     import RoleDrawer from './RoleDrawer.vue';
 
-    import { columns, searchFormSchema } from './role.data';
+    import { columns } from './role.data';
 
     export default defineComponent({
         name: 'RoleManagement',
         components: { BasicTable, RoleDrawer, TableAction },
         setup() {
+            const searchFormSchema2: Ref<FormSchema[]> = ref([
+                {
+                    field: 'url',
+                    label: 'URL',
+                    component: 'Input',
+                },
+                {
+                    field: 'moduleId',
+                    label: 'moduleId',
+                    component: 'Select',
+                    componentProps: {
+                        options: [],
+                    },
+                    colProps: { span: 8 },
+                },
+            ]);
+            const setData = () => {
+                if (searchFormSchema2.value[1].componentProps) {
+                    searchFormSchema2.value[1].componentProps = {
+                        options: [
+                            { label: '启用', value: 1 },
+                            { label: '停用', value: 2 },
+                            { label: '停用', value: 3 },
+                            { label: '停用', value: 4 },
+                        ],
+                    };
+                }
+            };
             const [registerDrawer, { openDrawer }] = useDrawer();
             const [registerTable, { reload }] = useTable({
                 title: '角色列表',
@@ -51,7 +80,7 @@
                 columns,
                 formConfig: {
                     labelWidth: 120,
-                    schemas: searchFormSchema,
+                    schemas: searchFormSchema2.value,
                 },
                 useSearchForm: true,
                 showTableSetting: true,
@@ -94,6 +123,7 @@
                 handleEdit,
                 handleDelete,
                 handleSuccess,
+                setData,
             };
         },
     });

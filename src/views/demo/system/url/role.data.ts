@@ -16,6 +16,11 @@ export const columns: BasicColumn[] = [
         width: 200,
     },
     {
+        title: '模块名称',
+        dataIndex: 'moduleName',
+        width: 200,
+    },
+    {
         title: '状态',
         dataIndex: 'status',
         width: 120,
@@ -54,6 +59,20 @@ export const searchFormSchema: FormSchema[] = [
         field: 'url',
         label: 'URL',
         component: 'Input',
+    },
+    {
+        field: 'moduleId',
+        label: 'moduleId',
+        component: 'Select',
+        componentProps: {
+            options: [
+                { label: '启用', value: 1 },
+                { label: '停用', value: 2 },
+                { label: '停用', value: 3 },
+                { label: '停用', value: 4 },
+            ],
+        },
+        colProps: { span: 8 },
     },
 ];
 
