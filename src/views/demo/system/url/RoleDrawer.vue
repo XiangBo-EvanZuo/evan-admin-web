@@ -62,13 +62,16 @@
     });
 
     const getTitle = computed(() => (!unref(isUpdate) ? '新增角色' : '编辑角色'));
-
+    const createUrl = async (values: any) => {
+        console.log(values);
+        throw values;
+    };
     async function handleSubmit() {
         try {
-            const values = await validate();
+            const values = await validate(['moduleId']);
             setDrawerProps({ confirmLoading: true });
             // TODO custom api
-            console.log(values);
+            await createUrl(values);
             closeDrawer();
             emit('success');
         } finally {

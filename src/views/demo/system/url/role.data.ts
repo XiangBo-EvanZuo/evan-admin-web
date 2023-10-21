@@ -81,6 +81,12 @@ export const formSchema: FormSchema[] = [
         field: 'path',
         label: 'path',
         component: 'Input',
+        rules: [
+            {
+                required: true,
+                message: '请输入用户名',
+            },
+        ],
     },
     {
         field: 'moduleId',
@@ -89,5 +95,12 @@ export const formSchema: FormSchema[] = [
         componentProps: {
             options: [],
         },
+        rules: [
+            {
+                required: true,
+                message: '请输入用户名',
+                type: 'number',
+            },
+        ],
     },
 ];
