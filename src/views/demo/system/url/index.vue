@@ -47,8 +47,8 @@
             const labelList: Ref<Record<any, any>> = ref([]);
             const searchFormSchema2: FormSchema[] = [
                 {
-                    field: 'url',
-                    label: 'URL',
+                    field: 'path',
+                    label: 'Path',
                     component: 'Input',
                 },
                 {
