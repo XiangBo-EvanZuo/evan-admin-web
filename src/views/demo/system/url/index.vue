@@ -3,7 +3,6 @@
         <BasicTable @register="registerTable">
             <template #toolbar>
                 <a-button type="primary" @click="handleCreate"> 新增URL </a-button>
-                <a-button type="primary" @click="setData"> setData </a-button>
             </template>
             <template #bodyCell="{ column, record }">
                 <template v-if="column.key === 'action'">
@@ -34,7 +33,7 @@
     import { Ref, defineComponent, ref } from 'vue';
 
     import { BasicTable, useTable, TableAction, FormSchema } from '/@/components/Table';
-    import { getUrlList } from '/@/api/demo/system';
+    import { getUrlList, getModuleList } from '/@/api/demo/system';
 
     import { useDrawer } from '/@/components/Drawer';
     import RoleDrawer from './RoleDrawer.vue';
@@ -45,6 +44,8 @@
         name: 'RoleManagement',
         components: { BasicTable, RoleDrawer, TableAction },
         setup() {
+            const labelList: Ref<Record<any, any>> = ref([]);
+
             const searchFormSchema2: Ref<FormSchema[]> = ref([
                 {
                     field: 'url',
@@ -56,22 +57,19 @@
                     label: 'moduleId',
                     component: 'Select',
                     componentProps: {
-                        options: [],
+                        options: labelList.value,
                     },
                     colProps: { span: 8 },
                 },
             ]);
-            const setData = () => {
-                if (searchFormSchema2.value[1].componentProps) {
-                    searchFormSchema2.value[1].componentProps = {
-                        options: [
-                            { label: '启用', value: 1 },
-                            { label: '停用', value: 2 },
-                            { label: '停用', value: 3 },
-                            { label: '停用', value: 4 },
-                        ],
+            const setData = async () => {
+                const res = await getModuleList();
+                labelList.value = res.map((item) => {
+                    return {
+                        value: item.id,
+                        label: item.name,
                     };
-                }
+                });
             };
             const [registerDrawer, { openDrawer }] = useDrawer();
             const [registerTable, { reload }] = useTable({
@@ -98,6 +96,7 @@
             function handleCreate() {
                 openDrawer(true, {
                     isUpdate: false,
+                    labelList: labelList.value,
                 });
             }
 
@@ -105,6 +104,7 @@
                 openDrawer(true, {
                     record,
                     isUpdate: true,
+                    labelList: labelList.value,
                 });
             }
 
@@ -115,7 +115,7 @@
             function handleSuccess() {
                 reload();
             }
-
+            setData();
             return {
                 registerTable,
                 registerDrawer,
@@ -123,7 +123,7 @@
                 handleEdit,
                 handleDelete,
                 handleSuccess,
-                setData,
+                labelList,
             };
         },
     });

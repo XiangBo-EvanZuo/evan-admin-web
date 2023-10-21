@@ -78,14 +78,16 @@ export const searchFormSchema: FormSchema[] = [
 
 export const formSchema: FormSchema[] = [
     {
-        field: 'url',
-        label: 'URL',
+        field: 'path',
+        label: 'path',
         component: 'Input',
     },
-    // {
-    //     label: ' ',
-    //     field: 'menu',
-    //     slot: 'menu',
-    //     component: 'Input',
-    // },
+    {
+        field: 'moduleId',
+        label: 'moduleId',
+        component: 'Select',
+        componentProps: {
+            options: [],
+        },
+    },
 ];

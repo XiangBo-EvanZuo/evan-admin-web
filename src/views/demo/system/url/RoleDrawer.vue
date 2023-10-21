@@ -34,7 +34,7 @@
     const isUpdate = ref(true);
     const treeData = ref<TreeItem[]>([]);
 
-    const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
+    const [registerForm, { resetFields, updateSchema, setFieldsValue, validate }] = useForm({
         labelWidth: 90,
         baseColProps: { span: 24 },
         schemas: formSchema,
@@ -42,6 +42,10 @@
     });
 
     const [registerDrawer, { setDrawerProps, closeDrawer }] = useDrawerInner(async (data) => {
+        updateSchema({
+            field: 'moduleId',
+            componentProps: { options: data.labelList },
+        });
         resetFields();
         setDrawerProps({ confirmLoading: false });
         // 需要在setFieldsValue之前先填充treeData，否则Tree组件可能会报key not exist警告

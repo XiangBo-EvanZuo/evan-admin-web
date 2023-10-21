@@ -24,6 +24,7 @@ enum Api {
     RolePageList = '/business-menu/system/getRoleListByPage',
     GetAllRoleList = '/business-menu/system/getAllRoleList',
     UrlList = '/business-menu/system/getUrlList',
+    ModuleList = '/business-menu/system/getModuleList',
 }
 
 export const getAccountList = (params: AccountParams) =>
@@ -57,6 +58,8 @@ export const getRoleListByPage = (params?: RolePageParams) =>
 
 export const getUrlList = (params?: RolePageParams) =>
     defHttp.post<RolePageListGetResultModel>({ url: Api.UrlList, params });
+export const getModuleList = (params?: RolePageParams) =>
+    defHttp.post<Array<Record<string, string>>>({ url: Api.ModuleList, params });
 
 export const getAllRoleList = (params?: RoleParams) =>
     defHttp.get<RoleListGetResultModel>({ url: Api.GetAllRoleList, params });
