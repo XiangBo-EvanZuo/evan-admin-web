@@ -28,7 +28,7 @@
     import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
     import { BasicTree, TreeItem } from '/@/components/Tree';
 
-    import { getMenuList } from '/@/api/demo/system';
+    import { getMenuList, addAuthUrl, updateAuthUrl } from '/@/api/demo/system';
 
     const emit = defineEmits(['success', 'register']);
     const isUpdate = ref(true);
@@ -41,19 +41,25 @@
         showActionButtonGroup: false,
     });
 
+    const recordValue = ref<any>({});
     const [registerDrawer, { setDrawerProps, closeDrawer }] = useDrawerInner(async (data) => {
+        console.log({ data });
+        resetFields();
         updateSchema({
             field: 'moduleId',
             componentProps: { options: data.labelList },
         });
-        resetFields();
         setDrawerProps({ confirmLoading: false });
         // 需要在setFieldsValue之前先填充treeData，否则Tree组件可能会报key not exist警告
         if (unref(treeData).length === 0) {
             treeData.value = (await getMenuList()) as any as TreeItem[];
         }
         isUpdate.value = !!data?.isUpdate;
-
+        if (data.record) {
+            recordValue.value = data.record;
+        } else {
+            recordValue.value = {};
+        }
         if (unref(isUpdate)) {
             setFieldsValue({
                 ...data.record,
@@ -63,15 +69,26 @@
 
     const getTitle = computed(() => (!unref(isUpdate) ? '新增角色' : '编辑角色'));
     const createUrl = async (values: any) => {
-        console.log(values);
-        throw values;
+        const res = await addAuthUrl(values);
+        console.log(res);
+    };
+    const editUrl = async (values: any, others: any) => {
+        const params = {
+            ...values,
+            ...others,
+        };
+        const res = await updateAuthUrl(params);
+        console.log(res);
     };
     async function handleSubmit() {
         try {
             const values = await validate(['moduleId']);
             setDrawerProps({ confirmLoading: true });
-            // TODO custom api
-            await createUrl(values);
+            if (recordValue.value.id) {
+                await editUrl(values, { id: recordValue.value.id });
+            } else {
+                await createUrl(values);
+            }
             closeDrawer();
             emit('success');
         } finally {

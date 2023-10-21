@@ -56,6 +56,30 @@ export default defineApplicationConfig({
                     // only https
                     // secure: false
                 },
+                '/evan/business-menu/system/updateAuthUrl': {
+                    target: 'http://127.0.0.1:9201',
+                    changeOrigin: true,
+                    ws: true,
+                    rewrite: (path) => path.replace(new RegExp(`^/evan`), ''),
+                    // only https
+                    // secure: false
+                },
+                '/evan/business-menu/system/deleteAuthUrl': {
+                    target: 'http://127.0.0.1:9201',
+                    changeOrigin: true,
+                    ws: true,
+                    rewrite: (path) => path.replace(new RegExp(`^/evan`), ''),
+                    // only https
+                    // secure: false
+                },
+                '/evan/business-menu/system/addAuthUrl': {
+                    target: 'http://127.0.0.1:9201',
+                    changeOrigin: true,
+                    ws: true,
+                    rewrite: (path) => path.replace(new RegExp(`^/evan`), ''),
+                    // only https
+                    // secure: false
+                },
                 '/evan/business-resource/user/getPermCode': {
                     target: 'http://127.0.0.1:9201',
                     changeOrigin: true,

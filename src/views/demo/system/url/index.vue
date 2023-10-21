@@ -33,7 +33,7 @@
     import { Ref, defineComponent, ref } from 'vue';
 
     import { BasicTable, useTable, TableAction, FormSchema } from '/@/components/Table';
-    import { getUrlList, getModuleList } from '/@/api/demo/system';
+    import { getUrlList, getModuleList, deleteAuthUrl } from '/@/api/demo/system';
 
     import { useDrawer } from '/@/components/Drawer';
     import RoleDrawer from './RoleDrawer.vue';
@@ -45,8 +45,7 @@
         components: { BasicTable, RoleDrawer, TableAction },
         setup() {
             const labelList: Ref<Record<any, any>> = ref([]);
-
-            const searchFormSchema2: Ref<FormSchema[]> = ref([
+            const searchFormSchema2: FormSchema[] = [
                 {
                     field: 'url',
                     label: 'URL',
@@ -61,7 +60,7 @@
                     },
                     colProps: { span: 8 },
                 },
-            ]);
+            ];
             const setData = async () => {
                 const res = await getModuleList();
                 labelList.value = res.map((item) => {
@@ -70,15 +69,18 @@
                         label: item.name,
                     };
                 });
+                searchFormSchema2[1].componentProps = {
+                    options: labelList.value,
+                };
             };
             const [registerDrawer, { openDrawer }] = useDrawer();
-            const [registerTable, { reload }] = useTable({
+            const [registerTable, { reload, setPagination }] = useTable({
                 title: '角色列表',
                 api: getUrlList,
                 columns,
                 formConfig: {
                     labelWidth: 120,
-                    schemas: searchFormSchema2.value,
+                    schemas: searchFormSchema2,
                 },
                 useSearchForm: true,
                 showTableSetting: true,
@@ -108,11 +110,15 @@
                 });
             }
 
-            function handleDelete(record: Recordable) {
-                console.log(record);
+            async function handleDelete(record: Recordable) {
+                await deleteAuthUrl({ id: record.id });
+                handleSuccess();
             }
 
             function handleSuccess() {
+                setPagination({
+                    current: 1,
+                });
                 reload();
             }
             setData();
