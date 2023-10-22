@@ -118,4 +118,10 @@ export const formSchema: FormSchema[] = [
         slot: 'menu',
         component: 'Input',
     },
+    {
+        label: ' ',
+        field: 'urlList',
+        slot: 'urlList',
+        component: 'Input',
+    },
 ];

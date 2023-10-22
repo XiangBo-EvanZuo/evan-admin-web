@@ -11,12 +11,12 @@
                             {
                                 label: '编辑URL',
                                 icon: 'clarity:note-edit-line',
-                                onClick: handleEdit.bind(null, record),
+                                onClick: handleEdit.bind(null, record, DrawerEditType.URL),
                             },
                             {
                                 label: '编辑菜单',
                                 icon: 'clarity:note-edit-line',
-                                onClick: handleEdit.bind(null, record),
+                                onClick: handleEdit.bind(null, record, DrawerEditType.MENU),
                             },
                             {
                                 icon: 'ant-design:delete-outlined',
@@ -33,6 +33,7 @@
             </template>
         </BasicTable>
         <RoleDrawer @register="registerDrawer" @success="handleSuccess" />
+        <UrlDrawer @register="registerDrawerUrl" @success="handleSuccess" />
     </div>
 </template>
 <script lang="ts">
@@ -43,16 +44,20 @@
 
     import { useDrawer } from '/@/components/Drawer';
     import RoleDrawer from './RoleDrawer.vue';
+    import UrlDrawer from './UrlDrawer.vue';
 
     import { columns, searchFormSchema } from './role.data';
+    import { DrawerEditType } from './type';
+
     // import { useI18n } from '/@/hooks/web/useI18n';
     // import { createActionColumn } from './action';
 
     export default defineComponent({
         name: 'RoleManagement',
-        components: { BasicTable, RoleDrawer, TableAction },
+        components: { BasicTable, RoleDrawer, TableAction, UrlDrawer },
         setup() {
             const [registerDrawer, { openDrawer }] = useDrawer();
+            const [registerDrawerUrl, { openDrawer: openDrawerUrl }] = useDrawer();
             const [registerTable, { reload }] = useTable({
                 title: '角色列表',
                 api: getRoleListByPage,
@@ -102,11 +107,18 @@
                 });
             }
 
-            function handleEdit(record: Recordable) {
-                openDrawer(true, {
-                    record,
-                    isUpdate: true,
-                });
+            function handleEdit(record: Recordable, drawerEditType: DrawerEditType) {
+                if (drawerEditType === DrawerEditType.MENU) {
+                    openDrawer(true, {
+                        record,
+                        isUpdate: true,
+                    });
+                } else if (drawerEditType === DrawerEditType.URL) {
+                    openDrawerUrl(true, {
+                        record,
+                        isUpdate: true,
+                    });
+                }
             }
 
             function handleDelete(record: Recordable) {
@@ -120,10 +132,12 @@
             return {
                 registerTable,
                 registerDrawer,
+                registerDrawerUrl,
                 handleCreate,
                 handleEdit,
                 handleDelete,
                 handleSuccess,
+                DrawerEditType,
             };
         },
     });

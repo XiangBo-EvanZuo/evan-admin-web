@@ -8,16 +8,8 @@
         @ok="handleSubmit"
     >
         <BasicForm @register="registerForm">
-            <template #menu="{ model, field }">
-                <BasicTree
-                    v-if="treeData.length && model[field]"
-                    v-model:value="model[field]"
-                    :treeData="treeData"
-                    :fieldNames="{ title: 'name', key: 'id' }"
-                    checkable
-                    toolbar
-                    title="菜单分配"
-                />
+            <template #urlList="{ model, field }">
+                <mutipleSelect v-model:value="model[field]" />
             </template>
         </BasicForm>
     </BasicDrawer>
@@ -27,13 +19,10 @@
     import { BasicForm, useForm } from '/@/components/Form/index';
     import { formSchema } from './role.data';
     import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
-    import { BasicTree, TreeItem } from '/@/components/Tree';
-
-    import { getMenuList } from '/@/api/demo/system';
+    import mutipleSelect from './mutipleSelect.vue';
 
     const emit = defineEmits(['success', 'register']);
     const isUpdate = ref(true);
-    const treeData = ref<TreeItem[]>([]);
 
     const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
         labelWidth: 90,
@@ -45,10 +34,6 @@
     const [registerDrawer, { setDrawerProps, closeDrawer }] = useDrawerInner(async (data) => {
         resetFields();
         setDrawerProps({ confirmLoading: false });
-        // 需要在setFieldsValue之前先填充treeData，否则Tree组件可能会报key not exist警告
-        if (unref(treeData).length === 0) {
-            treeData.value = (await getMenuList()) as any as TreeItem[];
-        }
         isUpdate.value = !!data?.isUpdate;
 
         if (unref(isUpdate)) {

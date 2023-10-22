@@ -62,6 +62,7 @@ export interface RoleListItem {
     urlList: Array<number>;
     menuLength?: number;
     urlListLength?: number;
+    url?: string;
 }
 
 /**
