@@ -20,9 +20,11 @@
     import { formSchema } from './role.data';
     import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
     import mutipleSelect from './mutipleSelect.vue';
+    import { updateRoleUrl } from '@/api/demo/system';
 
     const emit = defineEmits(['success', 'register']);
     const isUpdate = ref(true);
+    const recordValue = ref<Record<string, string>>({});
 
     const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
         labelWidth: 90,
@@ -35,7 +37,7 @@
         resetFields();
         setDrawerProps({ confirmLoading: false });
         isUpdate.value = !!data?.isUpdate;
-
+        recordValue.value = data?.record || {};
         if (unref(isUpdate)) {
             setFieldsValue({
                 ...data.record,
@@ -49,8 +51,11 @@
         try {
             const values = await validate();
             setDrawerProps({ confirmLoading: true });
-            // TODO custom api
-            console.log(values);
+            const params = {
+                list: values.urlList,
+                roleId: recordValue.value.id,
+            };
+            await updateRoleUrl(params);
             closeDrawer();
             emit('success');
         } finally {
