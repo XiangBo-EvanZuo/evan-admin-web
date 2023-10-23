@@ -9,15 +9,27 @@
     >
         <BasicForm @register="registerForm">
             <template #menu="{ model, field }">
-                <BasicTree
-                    v-if="treeData.length && model[field]"
-                    v-model:value="model[field]"
-                    :treeData="treeData"
-                    :fieldNames="{ title: 'name', key: 'id' }"
-                    checkable
-                    toolbar
-                    title="菜单分配"
-                />
+                <div class="flex flex-col">
+                    <BasicTree
+                        v-if="treeData.length && model[field]"
+                        v-model:value="model[field]"
+                        :treeData="treeDataFirstLevel"
+                        :fieldNames="{ title: 'name', key: 'id' }"
+                        checkable
+                        toolbar
+                        title="菜单分配-一级目录控制"
+                    />
+                    <BasicTree
+                        v-if="treeData.length && model[field]"
+                        :value="model[field]"
+                        :treeData="treeData"
+                        :fieldNames="{ title: 'name', key: 'id' }"
+                        checkable
+                        :disabled="true"
+                        toolbar
+                        title="菜单分配-查看"
+                    />
+                </div>
             </template>
         </BasicForm>
     </BasicDrawer>
@@ -34,6 +46,7 @@
     const emit = defineEmits(['success', 'register']);
     const isUpdate = ref(true);
     const treeData = ref<TreeItem[]>([]);
+    const treeDataFirstLevel = ref<TreeItem[]>([]);
 
     const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
         labelWidth: 90,
@@ -48,6 +61,12 @@
         // 需要在setFieldsValue之前先填充treeData，否则Tree组件可能会报key not exist警告
         if (unref(treeData).length === 0) {
             treeData.value = (await getMenuList()) as any as TreeItem[];
+            treeDataFirstLevel.value = treeData.value.map((item) => {
+                return {
+                    ...item,
+                    children: [],
+                };
+            });
         }
         isUpdate.value = !!data?.isUpdate;
 

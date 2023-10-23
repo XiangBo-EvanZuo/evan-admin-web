@@ -15,7 +15,7 @@
                     :fieldNames="{ title: 'name', key: 'id' }"
                     checkable
                     toolbar
-                    title="菜单分配"
+                    title="角色资源分配"
                 />
             </template>
         </BasicForm>
