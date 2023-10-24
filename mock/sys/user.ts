@@ -6,7 +6,7 @@ export function createFakeUserList() {
         {
             userId: '1',
             username: 'vben',
-            realName: 'Vben Admin',
+            nickName: 'Vben Admin',
             avatar: '',
             desc: 'manager',
             password: '123456',
@@ -23,7 +23,7 @@ export function createFakeUserList() {
             userId: '2',
             username: 'test',
             password: '123456',
-            realName: 'test user',
+            nickName: 'test user',
             avatar: '',
             desc: 'tester',
             token: 'fakeToken2',
@@ -57,13 +57,13 @@ export default [
             if (!checkUser) {
                 return resultError('Incorrect account or password！');
             }
-            const { userId, username: _username, token, realName, desc, roles } = checkUser;
+            const { userId, username: _username, token, nickName, desc, roles } = checkUser;
             return resultSuccess({
                 roles,
                 userId,
                 username: _username,
                 token,
-                realName,
+                nickName,
                 desc,
             });
         },
