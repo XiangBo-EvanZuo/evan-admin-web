@@ -41,12 +41,13 @@
     import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
     import { BasicTree, TreeItem } from '/@/components/Tree';
 
-    import { getMenuList } from '/@/api/demo/system';
+    import { getMenuList, updateRoleMenu } from '/@/api/demo/system';
 
     const emit = defineEmits(['success', 'register']);
     const isUpdate = ref(true);
     const treeData = ref<TreeItem[]>([]);
     const treeDataFirstLevel = ref<TreeItem[]>([]);
+    const recordValue = ref<Record<string, string>>({});
 
     const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
         labelWidth: 90,
@@ -69,6 +70,7 @@
             });
         }
         isUpdate.value = !!data?.isUpdate;
+        recordValue.value = data?.record || {};
 
         if (unref(isUpdate)) {
             setFieldsValue({
@@ -83,8 +85,11 @@
         try {
             const values = await validate();
             setDrawerProps({ confirmLoading: true });
-            // TODO custom api
-            console.log(values);
+            const params = {
+                list: values.menu,
+                roleId: recordValue.value.id,
+            };
+            await updateRoleMenu(params);
             closeDrawer();
             emit('success');
         } finally {

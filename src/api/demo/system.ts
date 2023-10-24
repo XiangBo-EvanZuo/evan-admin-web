@@ -29,6 +29,7 @@ enum Api {
     UpdateAuthUrl = '/business-menu/system/updateAuthUrl',
     DeleteAuthUrl = '/business-menu/system/deleteAuthUrl',
     UpdateRoleUrl = '/business-menu/system/updateRoleUrl',
+    UpdateRoleMenu = '/business-menu/system/updateRoleMenu',
 }
 
 export const getAccountList = (params: AccountParams) =>
@@ -59,6 +60,9 @@ export const updateAuthUrl = (params?: MenuParams) =>
 
 export const updateRoleUrl = (params?: any) =>
     defHttp.post<MenuListGetResultModel>({ url: Api.UpdateRoleUrl, params });
+
+export const updateRoleMenu = (params?: any) =>
+    defHttp.post<MenuListGetResultModel>({ url: Api.UpdateRoleMenu, params });
 
 export const getRoleListByPage = (params?: RolePageParams) =>
     defHttp.post<RolePageListGetResultModel>({ url: Api.RolePageList, params }).then((res) => {
