@@ -13,23 +13,23 @@ import {
 import { defHttp } from '/@/utils/http/axios';
 
 enum Api {
-    AccountList = '/business-menu/system/getAccountList',
-    IsAccountExist = '/business-menu/system/accountExist',
-    DeptList = '/business-menu/system/getDeptList',
+    AccountList = '/user/system/getAccountList',
+    IsAccountExist = '/user/system/accountExist',
+    DeptList = '/user/system/getDeptList',
     setRoleStatus = '/system/setRoleStatus',
     // todo： 对接菜单接口打开以恢复mock
     // MenuList = '/system/getMenuList',
     // RolePageList = '/system/getRoleListByPage',
-    MenuList = '/business-resource/user/feignGetMenuList',
-    RolePageList = '/business-menu/system/getRoleListByPage',
-    GetAllRoleList = '/business-menu/system/getAllRoleList',
-    UrlList = '/business-menu/system/getUrlList',
-    ModuleList = '/business-menu/system/getModuleList',
-    AddAuthUrl = '/business-menu/system/addAuthUrl',
-    UpdateAuthUrl = '/business-menu/system/updateAuthUrl',
-    DeleteAuthUrl = '/business-menu/system/deleteAuthUrl',
-    UpdateRoleUrl = '/business-menu/system/updateRoleUrl',
-    UpdateRoleMenu = '/business-menu/system/updateRoleMenu',
+    MenuList = '/order/user/feignGetMenuList',
+    RolePageList = '/user/system/getRoleListByPage',
+    GetAllRoleList = '/user/system/getAllRoleList',
+    UrlList = '/user/system/getUrlList',
+    ModuleList = '/user/system/getModuleList',
+    AddAuthUrl = '/user/system/addAuthUrl',
+    UpdateAuthUrl = '/user/system/updateAuthUrl',
+    DeleteAuthUrl = '/user/system/deleteAuthUrl',
+    UpdateRoleUrl = '/user/system/updateRoleUrl',
+    UpdateRoleMenu = '/user/system/updateRoleMenu',
 }
 
 export const getAccountList = (params: AccountParams) =>

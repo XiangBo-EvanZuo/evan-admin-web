@@ -24,7 +24,7 @@ export default defineApplicationConfig({
                     // only https
                     // secure: false
                 },
-                '/evan/business-resource/user/currentUser': {
+                '/evan/order/user/currentUser': {
                     target: 'http://127.0.0.1:9201',
                     changeOrigin: true,
                     ws: true,
@@ -32,7 +32,7 @@ export default defineApplicationConfig({
                     // only https
                     // secure: false
                 },
-                '/evan/business-resource/user/feignGetMenuList': {
+                '/evan/order/user/feignGetMenuList': {
                     target: 'http://127.0.0.1:9201',
                     changeOrigin: true,
                     ws: true,
@@ -40,7 +40,7 @@ export default defineApplicationConfig({
                     // only https
                     // secure: false
                 },
-                '/evan/business-menu/system/getUrlList': {
+                '/evan/user/system/getUrlList': {
                     target: 'http://127.0.0.1:9201',
                     changeOrigin: true,
                     ws: true,
@@ -48,7 +48,7 @@ export default defineApplicationConfig({
                     // only https
                     // secure: false
                 },
-                '/evan/business-menu/system/getModuleList': {
+                '/evan/user/system/getModuleList': {
                     target: 'http://127.0.0.1:9201',
                     changeOrigin: true,
                     ws: true,
@@ -56,7 +56,7 @@ export default defineApplicationConfig({
                     // only https
                     // secure: false
                 },
-                '/evan/business-menu/system/updateAuthUrl': {
+                '/evan/user/system/updateAuthUrl': {
                     target: 'http://127.0.0.1:9201',
                     changeOrigin: true,
                     ws: true,
@@ -64,7 +64,7 @@ export default defineApplicationConfig({
                     // only https
                     // secure: false
                 },
-                '/evan/business-menu/system/updateRoleUrl': {
+                '/evan/user/system/updateRoleUrl': {
                     target: 'http://127.0.0.1:9201',
                     changeOrigin: true,
                     ws: true,
@@ -72,7 +72,7 @@ export default defineApplicationConfig({
                     // only https
                     // secure: false
                 },
-                '/evan/business-menu/system/updateRoleMenu': {
+                '/evan/user/system/updateRoleMenu': {
                     target: 'http://127.0.0.1:9201',
                     changeOrigin: true,
                     ws: true,
@@ -80,7 +80,7 @@ export default defineApplicationConfig({
                     // only https
                     // secure: false
                 },
-                '/evan/business-menu/system/deleteAuthUrl': {
+                '/evan/user/system/deleteAuthUrl': {
                     target: 'http://127.0.0.1:9201',
                     changeOrigin: true,
                     ws: true,
@@ -88,7 +88,7 @@ export default defineApplicationConfig({
                     // only https
                     // secure: false
                 },
-                '/evan/business-menu/system/addAuthUrl': {
+                '/evan/user/system/addAuthUrl': {
                     target: 'http://127.0.0.1:9201',
                     changeOrigin: true,
                     ws: true,
@@ -96,7 +96,7 @@ export default defineApplicationConfig({
                     // only https
                     // secure: false
                 },
-                '/evan/business-resource/user/getPermCode': {
+                '/evan/order/user/getPermCode': {
                     target: 'http://127.0.0.1:9201',
                     changeOrigin: true,
                     ws: true,
@@ -112,7 +112,7 @@ export default defineApplicationConfig({
                     // only https
                     // secure: false
                 },
-                '/evan/business-menu/system/getDeptList': {
+                '/evan/user/system/getDeptList': {
                     target: 'http://127.0.0.1:9201',
                     changeOrigin: true,
                     ws: true,
@@ -120,7 +120,7 @@ export default defineApplicationConfig({
                     // only https
                     // secure: false
                 },
-                '/evan/business-menu/system/getAccountList': {
+                '/evan/user/system/getAccountList': {
                     target: 'http://127.0.0.1:9201',
                     changeOrigin: true,
                     ws: true,
@@ -128,7 +128,7 @@ export default defineApplicationConfig({
                     // only https
                     // secure: false
                 },
-                '/evan/business-menu/system/getAllRoleList': {
+                '/evan/user/system/getAllRoleList': {
                     target: 'http://127.0.0.1:9201',
                     changeOrigin: true,
                     ws: true,
@@ -136,7 +136,7 @@ export default defineApplicationConfig({
                     // only https
                     // secure: false
                 },
-                '/evan/business-menu/system/accountExist': {
+                '/evan/user/system/accountExist': {
                     target: 'http://127.0.0.1:9201',
                     changeOrigin: true,
                     ws: true,
@@ -144,7 +144,7 @@ export default defineApplicationConfig({
                     // only https
                     // secure: false
                 },
-                '/evan/business-menu/system/getRoleListByPage': {
+                '/evan/user/system/getRoleListByPage': {
                     target: 'http://127.0.0.1:9201',
                     changeOrigin: true,
                     ws: true,
