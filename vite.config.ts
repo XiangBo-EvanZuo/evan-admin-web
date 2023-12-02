@@ -24,7 +24,7 @@ export default defineApplicationConfig({
                     // only https
                     // secure: false
                 },
-                '/evan/order/user/currentUser': {
+                '/evan/user/user/currentUser': {
                     target: 'http://127.0.0.1:9201',
                     changeOrigin: true,
                     ws: true,
@@ -32,7 +32,7 @@ export default defineApplicationConfig({
                     // only https
                     // secure: false
                 },
-                '/evan/order/user/feignGetMenuList': {
+                '/evan/user/user/getMenuList': {
                     target: 'http://127.0.0.1:9201',
                     changeOrigin: true,
                     ws: true,
@@ -96,7 +96,7 @@ export default defineApplicationConfig({
                     // only https
                     // secure: false
                 },
-                '/evan/order/user/getPermCode': {
+                '/evan/user/user/getPermCode': {
                     target: 'http://127.0.0.1:9201',
                     changeOrigin: true,
                     ws: true,

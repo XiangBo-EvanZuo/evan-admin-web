@@ -20,7 +20,7 @@ enum Api {
     // todo： 对接菜单接口打开以恢复mock
     // MenuList = '/system/getMenuList',
     // RolePageList = '/system/getRoleListByPage',
-    MenuList = '/order/user/feignGetMenuList',
+    MenuList = '/user/user/getMenuList',
     RolePageList = '/user/system/getRoleListByPage',
     GetAllRoleList = '/user/system/getAllRoleList',
     UrlList = '/user/system/getUrlList',
