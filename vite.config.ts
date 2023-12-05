@@ -32,7 +32,7 @@ export default defineApplicationConfig({
                     // only https
                     // secure: false
                 },
-                '/evan/user/user/getMenuList': {
+                '/evan/user/menu/list': {
                     target: 'http://127.0.0.1:9201',
                     changeOrigin: true,
                     ws: true,

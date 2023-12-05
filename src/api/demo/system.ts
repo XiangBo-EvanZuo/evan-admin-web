@@ -20,7 +20,7 @@ enum Api {
     // todo： 对接菜单接口打开以恢复mock
     // MenuList = '/system/getMenuList',
     // RolePageList = '/system/getRoleListByPage',
-    MenuList = '/user/user/getMenuList',
+    MenuList = '/user/menu/list',
     RolePageList = '/user/system/getRoleListByPage',
     GetAllRoleList = '/user/system/getAllRoleList',
     UrlList = '/user/system/getUrlList',
@@ -47,7 +47,7 @@ export const getDeptList = (params?: DeptListItem) =>
     defHttp.get<DeptListGetResultModel>({ url: Api.DeptList, params }).then((res) => res.list);
 
 export const getMenuList = (params?: MenuParams) =>
-    defHttp.get<MenuListGetResultModel>({ url: Api.MenuList, params }).then((res) => res.list);
+    defHttp.post<MenuListGetResultModel>({ url: Api.MenuList, params }).then((res) => res.list);
 
 export const addAuthUrl = (params?: MenuParams) =>
     defHttp.post<MenuListGetResultModel>({ url: Api.AddAuthUrl, params });
